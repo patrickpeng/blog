@@ -1,5 +1,5 @@
 title:            彭奇奇 Patrick@NUA
-description:      Describe your website here.
+description:      彭奇奇的個人博客，禁止轉載
 
 # put your disqus here
 disqus_shortname:
@@ -10,7 +10,7 @@ excerpt_separator: <!--more-->
 # Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
 # When testing locally leave blank or use http://localhost:4000
 
-url: https://www.pengqiqi.com
+url: https://pengqiqi.com
 
 # draw your top menu here
 # each item must have a title and a url.
@@ -48,8 +48,8 @@ twitter:
 social:
   - title: "微博"
     url: "https://weibo.com/patrickpeng"
-  - title: "Twitter"
-    url: "https://twitter.com/patrickpeng"
+  - title: "Instagram"
+    url: "https://instagram.com/patrickpeng"
 
 
 # Background image to be tiled on all pages
@@ -78,7 +78,7 @@ permalink:   /:categories/:title/
 paginate: 5
 
 # if true, shows the floatting share buttons
-float_share: true
+float_share: false
 
 # Octopress
 # Default extensions
