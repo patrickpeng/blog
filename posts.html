@@ -1,7 +1,7 @@
 ---
 layout: home
-title: All Posts
-description: "An archive of posts."
+title: 所有文章
+description: "全部文章列表"
 comments: false
 ---
 
@@ -14,9 +14,9 @@ comments: false
       <h2 id="{{ this_year }}-ref">{{ this_year }}</h2>
       <ul>
     {% endif %}
-
+    
         <li class="entry-title"><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
-
+    
     {% if forloop.last %}
       </ul>
     </article>
