@@ -1,15 +1,10 @@
 ---
-id: 5
 title: 我拉着她的手逃出了众人的目光
 date: 2002-04-15T07:19:00+00:00
 author: Patrick Peng
 layout: post
-guid: http://pengqiqi.com/blog/2002/04/15/hello-world-2/
-permalink: /blog/2002/04/5.html
-duoshuo_thread_id:
-  - "1940090"
-categories:
-  - 記
+categories: [記,詩]
+tags: [舊文]
 ---
 黯淡的黄昏
 我拉着她的手逃出了众人的目光
