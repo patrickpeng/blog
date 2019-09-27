@@ -1,25 +1,23 @@
-title:              錦瑟如灺
-email:              i@patrickpeng.com
-description:        彭奇奇的個人博客，謝絕轉載。
-author:             Patrick Peng
-#baseurl:            "/startbootstrap-clean-blog-jekyll"
-url:                "https://www.pengqiqi.com"
+title: 錦瑟如灺
+email: peng@hsieh.cn
+description: 彭灺的個人博客。
+author: 彭灺 Patrick Peng
+#baseurl: "/startbootstrap-clean-blog-jekyll"
+url: "https://www.pengqiqi.com"
 
 # Social Profiles
-twitter_username:   patrickpeng
-github_username:    
-facebook_username:  patrickpong
-linkedin_username:
+twitter_username: patrickpeng
+facebook_username: patrickpong
 
 # Add your google-analytics ID here to activate google analytics
-google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
+google_analytics: UA-XXXXXXXXX-X # out your google-analytics code
 
 # Build settings
-timezone:           Asia/Shanghai
-markdown:           kramdown
-paginate:           5
-paginate_path:      "/posts/page:num/"
-permalink:          /:categories/:title/
+timezone: Asia/Shanghai
+markdown: kramdown
+paginate: 5
+paginate_path: "/posts/page:num/"
+permalink: /:categories/:title/
 plugins:
   - jekyll-feed
   - jekyll-paginate
