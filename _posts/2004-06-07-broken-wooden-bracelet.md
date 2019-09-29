@@ -1,13 +1,8 @@
 ---
-id: 31
 title: 木镯之断裂
 date: 2004-06-07T14:11:00+00:00
 author: Patrick Peng
 layout: post
-guid: http://patrickpeng.cn/lifetime/2004/06/07/24.html
-permalink: /blog/2004/06/31.html
-duoshuo_thread_id:
-  - "1940108"
 categories:
   - 記
 ---

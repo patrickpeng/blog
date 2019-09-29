@@ -1,13 +1,8 @@
 ---
-id: 33
 title: 提不起劲 ~
 date: 2004-06-19T14:14:00+00:00
 author: Patrick Peng
 layout: post
-guid: http://patrickpeng.cn/lifetime/2004/06/19/26.html
-permalink: /blog/2004/06/33.html
-duoshuo_thread_id:
-  - "1940111"
 categories:
   - 記
 ---
