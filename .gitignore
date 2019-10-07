@@ -14,3 +14,5 @@ classes/
 logs/
 *.log
 rebel.xml
+.DS_Store
+.DS_Store
