@@ -46,22 +46,21 @@ layout: default
           <a class="btn btn-primary float-right" href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ page.next.title }}">Next<span class="d-none d-md-inline">
               Post</span> &rarr;</a>
           {% endif %}
+        </div>
           {% if page.comments %}
           <section id="isso-thread"></section>
           <script data-isso="//cone.dylanwu.space/pengqiqi/"
-        data-isso-css="true"
-        data-isso-reply-to-self="false"
-        data-isso-require-author="true"
-        data-isso-require-email="true"
-        data-isso-max-comments-top="10"
-        data-isso-max-comments-nested="5"
-        data-isso-reveal-on-click="5"
-        data-isso-avatar="false"
-        data-isso-gravatar="true"
-        src="//cone.dylanwu.space/pengqiqi/js/embed.min.js"></script>
+              data-isso-css="true"
+              data-isso-reply-to-self="false"
+              data-isso-require-author="true"
+              data-isso-require-email="true"
+              data-isso-max-comments-top="10"
+              data-isso-max-comments-nested="5"
+              data-isso-reveal-on-click="5"
+              data-isso-avatar="false"
+              data-isso-gravatar="true" src="//cone.dylanwu.space/pengqiqi/js/embed.min.js">
+          </script>
           {% endif %}
-        </div>
-
       </div>
     </div>
   </div>
