@@ -75,3 +75,7 @@ img::-moz-selection {
   color: $white;
   background: transparent;
 }
+
+.avatar img {
+  width: 100% !important;
+}
