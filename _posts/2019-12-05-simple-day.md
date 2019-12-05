@@ -5,6 +5,7 @@ author: Patrick Peng
 layout: post
 categories:
   - 記
+comments: true
 ---
 昨天下午被臨時通知今天去珍珠泉附近開一個會。但是臨睡前發生了一件小事。
 
