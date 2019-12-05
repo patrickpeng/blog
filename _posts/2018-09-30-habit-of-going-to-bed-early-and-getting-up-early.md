@@ -5,6 +5,7 @@ author: Patrick Peng
 layout: post
 categories:
   - 記
+comments: true
 ---
 我大約是從暑假之前開始試驗養成「早睡早起」的生活習慣。
 
