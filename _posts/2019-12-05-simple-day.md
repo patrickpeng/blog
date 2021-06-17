@@ -1,5 +1,5 @@
 ---
-title: ‪夢裡紛然無緒憶，因緣似水徑直東。‬ ​​​
+title: ‪夢裡紛然無緒憶，因緣似水徑直東。‬
 date: 2019-12-05T16:29:02+00:00
 author: Patrick Peng
 layout: post
