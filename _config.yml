@@ -1,13 +1,13 @@
 title: 錦瑟如灺
 email: peng@hsieh.cn
-description: 彭灺的個人博客。
+description: 
 author: 彭灺 Patrick Peng
 #baseurl: "/startbootstrap-clean-blog-jekyll"
 url: "https://peng.hsieh.cn"
 
 # Social Profiles
-twitter_username: patrickpeng
-facebook_username: patrickpong
+#twitter_username: 
+#facebook_username: 
 
 # Add your google-analytics ID here to activate google analytics
 google_analytics: UA-XXXXXXXXX-X # out your google-analytics code
