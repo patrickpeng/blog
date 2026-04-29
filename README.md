@@ -1,4 +1,4 @@
-Patrick's Blog.
+Elysian's Blog.
 
 ## Maintenance
 
@@ -9,5 +9,12 @@ Local build:
 ```bash
 bundle install
 bundle exec jekyll build
+```
 
-2026-04-29 22：24
+Local preview:
+
+```bash
+bundle exec jekyll serve
+```
+
+Last maintenance: 2026-04-29
