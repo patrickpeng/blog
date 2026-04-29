@@ -14,4 +14,6 @@ classes/
 logs/
 *.log
 rebel.xml
+# macOS
 .DS_Store
+**/.DS_Store
