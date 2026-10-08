@@ -97,7 +97,7 @@
   // 横排模式（點按鈕後 body 加 .poem-horizontal）：彈性容器，上下各留 50px，不再使用固定高度。
   body.poem-horizontal & .poem-scroll {
     direction: ltr;
-    text-align: initial;
+    text-align: center;
     min-height: 0;
     overflow: visible;
     padding: 50px 1.25rem;
@@ -121,6 +121,7 @@
     font-size: 1.15rem;
     line-height: 2;
     letter-spacing: 0.05em;
+    text-align: center;
   }
 
   body.poem-horizontal & .poem-line {
