@@ -46,10 +46,12 @@ background: '/img/bg-post.png'
           </div>
         </div>
         <script>
-          // 竖排诗歌：把每句包进 .poem-line（flex 项），避免超宽时换成分页；并提供横排/竖排切换（默认竖排）
+          // 竖排诗歌：把每句包进 .poem-line（竖排中每个块级元素自成一列）；
+          // 提供横排/竖排切换（默认竖排）；并把滚动容器滚到诗首（右端）。
           (function () {
             var wrap = document.querySelector('.poem-vertical-wrap');
             if (!wrap) return;
+            var scroller = wrap.querySelector('.poem-scroll');
             var p = wrap.querySelector('.poem-content p');
             if (p) {
               var lines = p.innerHTML.split(/<br\s*\/?>/i);
@@ -57,10 +59,24 @@ background: '/img/bg-post.png'
                 return '<span class="poem-line">' + html.replace(/^\s+|\s+$/g, '') + '</span>';
               }).join('');
             }
+            // 兼容不同浏览器的 RTL scrollLeft 约定：
+            // Chrome/新版 Safari：范围 [-(sw-cw), 0]，0 = 右端；
+            // 旧版 WebKit/Safari：范围 [0, sw-cw]，0 = 左端。
+            // 赋一个超大的正值，两种约定下都会被夹到「最右端」（诗首）。
+            function scrollToPoemStart() {
+              if (!scroller || document.body.classList.contains('poem-horizontal')) return;
+              scroller.scrollLeft = scroller.scrollWidth;
+            }
+            scrollToPoemStart();
+            if (document.fonts && document.fonts.ready) {
+              document.fonts.ready.then(scrollToPoemStart);
+            }
+            window.addEventListener('resize', scrollToPoemStart);
             wrap.querySelectorAll('.poem-toggle').forEach(function (btn) {
               btn.addEventListener('click', function () {
                 var v = document.body.classList.toggle('poem-horizontal');
                 btn.textContent = v ? btn.dataset.horizontal : btn.dataset.vertical;
+                if (!v) scrollToPoemStart();
               });
             });
           })();

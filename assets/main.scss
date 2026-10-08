@@ -153,14 +153,14 @@ header.masthead .page-heading {
     -webkit-overflow-scrolling: touch; // iOS 慣性滾動
   }
 
+  // 竖排容器用纯块级流（vertical-rl 中块级元素从右往左各成一列），
+  // 不用 flex/row-reverse，规避旧版 WebKit 对「flex + writing-mode」组合的布局 bug。
   .poem-stage {
-    display: inline-flex;
-    flex-direction: row-reverse; // 標題在右，正文在左；整體仍從右向左閱讀
-    align-items: center; // 標題和詩句在彼此高度中居中
-    gap: 2.5rem;
-    width: max-content;
+    display: inline-block;
+    writing-mode: vertical-rl; // 块流从右往左：标题列在右，正文列在左
+    direction: rtl;
+    width: max-content; // 长诗宽度由内容决定，交给 .poem-scroll 横向滚动
     max-width: none;
-    direction: ltr; // 只讓滾動容器 RTL；正文保持 LTR，避免句末標點被 bidi 排到句首
     text-align: initial;
   }
 
@@ -169,8 +169,9 @@ header.masthead .page-heading {
     text-orientation: upright;
     direction: ltr;
     unicode-bidi: isolate;
-    flex-shrink: 0;
-    margin: 0;
+    display: flex; // 单项目 flex：沿文字方向（竖）居中
+    justify-content: center;
+    margin: 0 0 0 2.5rem; // 与左侧正文的间距
     font-size: 2.3rem; // 正文 1.15rem 的 2 倍
     line-height: 1.4;
     letter-spacing: 0.25em;
@@ -179,26 +180,24 @@ header.masthead .page-heading {
   }
 
   .poem-content {
-    flex-shrink: 0;
+    display: block;
   }
 
   .poem-content p {
-    writing-mode: vertical-rl; // 豎排，每句一個 .poem-line flex 項，自動成列
+    writing-mode: vertical-rl; // 豎排，每句一個 .poem-line 塊，自動成列（从右往左）
     text-orientation: upright;
     direction: ltr;
     unicode-bidi: isolate;
-    display: flex;
-    flex-direction: column; // vertical-rl 中主軸=塊軸：從右往左；horizontal-tb 中則為上下
     margin: 0;
     padding: 0;
     font-size: 1.15rem;
-    line-height: 2.0; // 豎排中控制的是「字距」；11 字一句不折層
+    line-height: 2.0; // 豎排中控制的是「列宽/字距」；长句不折层
     letter-spacing: 0.3em;
   }
 
   .poem-line {
-    flex-shrink: 0; // 關鍵：每句不被壓縮，超寬交給 .poem-scroll 橫向滾動
-    align-self: flex-start;
+    display: block; // vertical-rl 中每个块自成一列，长诗宽度自然超出交给 .poem-scroll 滚动
+    width: max-content;
   }
 
   // 横排模式（點按鈕後 body 加 .poem-horizontal）：彈性容器，上下各留 1.5rem，不再使用固定高度。
@@ -213,6 +212,7 @@ header.masthead .page-heading {
   body.poem-horizontal & .poem-stage {
     display: block;
     width: auto;
+    writing-mode: horizontal-tb;
     min-height: 0;
   }
 
@@ -233,6 +233,7 @@ header.masthead .page-heading {
 
   body.poem-horizontal & .poem-line {
     display: block;
+    width: auto;
   }
 
   // 手機適配：保持彈性高度與上下留白，略收緊字距和標題間距
@@ -242,11 +243,8 @@ header.masthead .page-heading {
       padding-bottom: 20px;
     }
 
-    .poem-stage {
-      gap: 1.5rem;
-    }
-
     .poem-vertical-title {
+      margin-left: 1.5rem;
       font-size: 2.1rem; // 正文 1.05rem 的 2 倍
       letter-spacing: 0.2em;
     }
