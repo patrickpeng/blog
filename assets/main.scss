@@ -33,9 +33,8 @@
   }
 
   // 滾動容器：豎排內容從右往左排布，長詩超出時水平滾動。
-  // 上下 50px 留白；用 min-height 而非固定 height，讓短詩在屏幕中更居中，長詩仍可彈性撐開。
+  // 高度由正文/標題高度與上下留白自然撐開，避免短詩容器被 vh 強行撐高。
   .poem-scroll {
-    min-height: 65vh;
     direction: rtl; // RTL 塊級流：內容天然靠右，向左溢出可滾動
     text-align: center; // 短詩/窄內容在容器中水平居中
     overflow-x: auto;
@@ -52,9 +51,8 @@
   .poem-stage {
     display: inline-flex;
     flex-direction: row-reverse; // 標題在右，正文在左；整體仍從右向左閱讀
-    align-items: center; // 詩句在容器高度中居中
+    align-items: center; // 標題和詩句在彼此高度中居中
     gap: 2.5rem;
-    min-height: calc(65vh - 100px);
     width: max-content;
     max-width: none;
     direction: ltr; // 只讓滾動容器 RTL；正文保持 LTR，避免句末標點被 bidi 排到句首
@@ -73,6 +71,10 @@
     letter-spacing: 0.25em;
     font-weight: 700;
     color: #6c5d44;
+  }
+
+  .poem-content {
+    flex-shrink: 0;
   }
 
   .poem-content p {
@@ -131,14 +133,12 @@
   // 手機適配：保持彈性高度與上下留白，略收緊字距和標題間距
   @media (max-width: 767px) {
     .poem-scroll {
-      min-height: min(75vh, 190vw);
       padding-top: 20px;
       padding-bottom: 20px;
     }
 
     .poem-stage {
       gap: 1.5rem;
-      min-height: calc(min(75vh, 190vw) - 40px);
     }
 
     .poem-vertical-title {
