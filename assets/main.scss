@@ -26,6 +26,8 @@
     p {
       writing-mode: vertical-rl; // 豎排，每句一個 .poem-line flex 項，自動成列
       text-orientation: upright;
+      direction: ltr; // 只讓滾動容器 RTL；正文保持 LTR，避免句末標點被 bidi 排到句首
+      unicode-bidi: isolate;
       display: flex;
       flex-direction: column; // vertical-rl 中主軸=塊軸：從右往左；horizontal-tb 中則為上下
       margin: 0 auto;
