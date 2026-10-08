@@ -5,6 +5,7 @@ author: Patrick Peng
 layout: post
 categories:
   - 詩
+vertical: true
 ---
 有月生世间，使人观其然。  
 缺月恨迟上，新月易沉潜。  

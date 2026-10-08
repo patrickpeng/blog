@@ -35,8 +35,31 @@ background: '/img/bg-post.png'
 
         {% if page.vertical %}
         <div class="poem-vertical-wrap">
-          {{ content }}
+          <p class="poem-toggle" data-vertical="横排" data-horizontal="竖排" title="切换横排 / 竖排">横排</p>
+          <div class="poem-scroll">
+            {{ content }}
+          </div>
         </div>
+        <script>
+          // 竖排诗歌：把每句包进 .poem-line（flex 项），避免超宽时换成分页；并提供横排/竖排切换（默认竖排）
+          (function () {
+            var wrap = document.querySelector('.poem-vertical-wrap');
+            if (!wrap) return;
+            var p = wrap.querySelector('.poem-scroll p');
+            if (p) {
+              var lines = p.innerHTML.split(/<br\s*\/?>/i);
+              p.innerHTML = lines.map(function (html) {
+                return '<span class="poem-line">' + html.replace(/^\s+|\s+$/g, '') + '</span>';
+              }).join('');
+            }
+            wrap.querySelectorAll('.poem-toggle').forEach(function (btn) {
+              btn.addEventListener('click', function () {
+                var v = document.body.classList.toggle('poem-horizontal');
+                btn.textContent = v ? btn.dataset.horizontal : btn.dataset.vertical;
+              });
+            });
+          })();
+        </script>
         {% else %}
         {{ content }}
         {% endif %}
