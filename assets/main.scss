@@ -45,10 +45,9 @@
 
   // 横排 / 豎排切換按鈕
   .poem-toggle {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 1;
+    display: block;
+    width: fit-content;
+    margin: 0 auto 1.25rem;
     padding: 2px 12px;
     font-size: 12px;
     line-height: 1.6;
@@ -88,11 +87,6 @@
       line-height: 2;
       letter-spacing: 0.05em;
     }
-  }
-
-  // 横排時給左上角按鈕騰出空間，避免壓字
-  body.poem-horizontal & {
-    padding-top: 52px;
   }
 
   // 手機適配：高度改由 vw 決定，保證一屏內能容納較長的一句
