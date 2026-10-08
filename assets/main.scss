@@ -94,13 +94,13 @@
     align-self: flex-start;
   }
 
-  // 横排模式（點按鈕後 body 加 .poem-horizontal）：彈性容器，上下各留 20px，不再使用固定高度。
+  // 横排模式（點按鈕後 body 加 .poem-horizontal）：彈性容器，上下各留 1.5rem，不再使用固定高度。
   body.poem-horizontal & .poem-scroll {
     direction: ltr;
     text-align: center;
     min-height: 0;
     overflow: visible;
-    padding: 20px 1.25rem;
+    padding: 1.5rem 1.25rem;
   }
 
   body.poem-horizontal & .poem-stage {
