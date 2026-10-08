@@ -6,6 +6,7 @@ layout: post
 categories:
   - 詩
 comments: true
+vertical: true
 ---
 大夜偶乍醒，  
 月棲正五更。  

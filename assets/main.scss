@@ -3,3 +3,25 @@
 ---
 
 @import "styles";
+
+// 詩歌豎排版式（front matter: vertical: true 的文章啟用）
+.poem-vertical-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 0;
+
+  p {
+    writing-mode: vertical-rl; // 豎排，<br> 分隔的句自動成列、從右往左
+    text-orientation: upright;
+    margin: 0;
+    padding: 2.5rem 1.5rem;
+    max-height: 70vh;
+    font-size: 1.35rem;
+    line-height: 2.2; // 豎排中控制的是「字距」
+    letter-spacing: 0.35em;
+    background: #fdfaf3;
+    border: 1px solid #e0d7c2;
+    border-radius: 4px;
+    box-shadow: 0 8px 28px rgba(80, 60, 30, 0.08);
+  }
+}
