@@ -37,7 +37,12 @@ background: '/img/bg-post.png'
         <div class="poem-vertical-wrap">
           <p class="poem-toggle" data-vertical="横排" data-horizontal="竖排" title="切换横排 / 竖排">横排</p>
           <div class="poem-scroll">
-            {{ content }}
+            <div class="poem-stage">
+              <h2 class="poem-vertical-title">{{ page.title }}</h2>
+              <div class="poem-content">
+                {{ content }}
+              </div>
+            </div>
           </div>
         </div>
         <script>
@@ -45,7 +50,7 @@ background: '/img/bg-post.png'
           (function () {
             var wrap = document.querySelector('.poem-vertical-wrap');
             if (!wrap) return;
-            var p = wrap.querySelector('.poem-scroll p');
+            var p = wrap.querySelector('.poem-content p');
             if (p) {
               var lines = p.innerHTML.split(/<br\s*\/?>/i);
               p.innerHTML = lines.map(function (html) {

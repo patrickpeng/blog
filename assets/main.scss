@@ -7,43 +7,9 @@
 // 詩歌豎排版式（front matter: vertical: true 的文章啟用）
 .poem-vertical-wrap {
   position: relative;
-  max-width: 100%; // 長詩不擑破頁面，改為容器內滾動
+  max-width: 100%; // 長詩不擠破頁面，改為容器內滾動
 
-  // 滾動容器：固定高度，豎排內容從右往左排布，超出時水平滾動
-  .poem-scroll {
-    height: 65vh;
-    min-height: 460px;
-    direction: rtl; // RTL 塊級流：內容天然靠右，向左溢出可滾動
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 1.5rem 0.75rem;
-    background: #fdfaf3;
-    border: 1px solid #e0d7c2;
-    border-radius: 4px;
-    box-shadow: 0 8px 28px rgba(80, 60, 30, 0.08);
-    -webkit-overflow-scrolling: touch; // iOS 慣性滾動
-
-    p {
-      writing-mode: vertical-rl; // 豎排，每句一個 .poem-line flex 項，自動成列
-      text-orientation: upright;
-      direction: ltr; // 只讓滾動容器 RTL；正文保持 LTR，避免句末標點被 bidi 排到句首
-      unicode-bidi: isolate;
-      display: flex;
-      flex-direction: column; // vertical-rl 中主軸=塊軸：從右往左；horizontal-tb 中則為上下
-      margin: 0 auto;
-      padding: 1.75rem 1.25rem;
-      font-size: 1.15rem;
-      line-height: 2.0; // 豎排中控制的是「字距」；11 字一句不折層
-      letter-spacing: 0.3em;
-    }
-
-    .poem-line {
-      flex-shrink: 0; // 關鍵：每句不被壓縮，超寬交給 .poem-scroll 橫向滾動
-      align-self: flex-start;
-    }
-  }
-
-  // 横排 / 豎排切換按鈕
+  // 横排 / 豎排切換按鈕：在正文容器上方居中
   .poem-toggle {
     display: block;
     width: fit-content;
@@ -66,40 +32,123 @@
     }
   }
 
-  // 横排模式（點按鈕後 body 加 .poem-horizontal）
-  body.poem-horizontal & .poem-scroll {
-    direction: ltr;
-    height: auto;
-    min-height: 0;
-    overflow: visible;
-    justify-content: flex-start;
-    padding: 0;
-    background: none;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-
-    p {
-      writing-mode: horizontal-tb;
-      margin: 0 0 30px;
-      padding: 0;
-      font-size: 1.15rem;
-      line-height: 2;
-      letter-spacing: 0.05em;
-    }
+  // 滾動容器：豎排內容從右往左排布，長詩超出時水平滾動。
+  // 上下 50px 留白；用 min-height 而非固定 height，讓短詩在屏幕中更居中，長詩仍可彈性撐開。
+  .poem-scroll {
+    min-height: 65vh;
+    direction: rtl; // RTL 塊級流：內容天然靠右，向左溢出可滾動
+    text-align: center; // 短詩/窄內容在容器中水平居中
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 50px 0.75rem;
+    background: #fdfaf3;
+    border: 1px solid #e0d7c2;
+    border-radius: 4px;
+    box-shadow: 0 8px 28px rgba(80, 60, 30, 0.08);
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch; // iOS 慣性滾動
   }
 
-  // 手機適配：高度改由 vw 決定，保證一屏內能容納較長的一句
+  .poem-stage {
+    display: inline-flex;
+    flex-direction: row-reverse; // 標題在右，正文在左；整體仍從右向左閱讀
+    align-items: center; // 詩句在容器高度中居中
+    gap: 2.5rem;
+    min-height: calc(65vh - 100px);
+    width: max-content;
+    max-width: none;
+    direction: ltr; // 只讓滾動容器 RTL；正文保持 LTR，避免句末標點被 bidi 排到句首
+    text-align: initial;
+  }
+
+  .poem-vertical-title {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    direction: ltr;
+    unicode-bidi: isolate;
+    flex-shrink: 0;
+    margin: 0;
+    font-size: 2.3rem; // 正文 1.15rem 的 2 倍
+    line-height: 1.4;
+    letter-spacing: 0.25em;
+    font-weight: 700;
+    color: #6c5d44;
+  }
+
+  .poem-content p {
+    writing-mode: vertical-rl; // 豎排，每句一個 .poem-line flex 項，自動成列
+    text-orientation: upright;
+    direction: ltr;
+    unicode-bidi: isolate;
+    display: flex;
+    flex-direction: column; // vertical-rl 中主軸=塊軸：從右往左；horizontal-tb 中則為上下
+    margin: 0;
+    padding: 0;
+    font-size: 1.15rem;
+    line-height: 2.0; // 豎排中控制的是「字距」；11 字一句不折層
+    letter-spacing: 0.3em;
+  }
+
+  .poem-line {
+    flex-shrink: 0; // 關鍵：每句不被壓縮，超寬交給 .poem-scroll 橫向滾動
+    align-self: flex-start;
+  }
+
+  // 横排模式（點按鈕後 body 加 .poem-horizontal）：彈性容器，上下各留 50px，不再使用固定高度。
+  body.poem-horizontal & .poem-scroll {
+    direction: ltr;
+    text-align: initial;
+    min-height: 0;
+    overflow: visible;
+    padding: 50px 1.25rem;
+  }
+
+  body.poem-horizontal & .poem-stage {
+    display: block;
+    width: auto;
+    min-height: 0;
+  }
+
+  body.poem-horizontal & .poem-vertical-title {
+    display: none;
+  }
+
+  body.poem-horizontal & .poem-content p {
+    writing-mode: horizontal-tb;
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-size: 1.15rem;
+    line-height: 2;
+    letter-spacing: 0.05em;
+  }
+
+  body.poem-horizontal & .poem-line {
+    display: block;
+  }
+
+  // 手機適配：保持彈性高度與上下留白，略收緊字距和標題間距
   @media (max-width: 767px) {
     .poem-scroll {
-      height: min(75vh, 190vw);
-      min-height: 340px;
+      min-height: min(75vh, 190vw);
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
 
-      p {
-        font-size: 1.05rem;
-        line-height: 1.9;
-        letter-spacing: 0.2em;
-      }
+    .poem-stage {
+      gap: 1.5rem;
+      min-height: calc(min(75vh, 190vw) - 100px);
+    }
+
+    .poem-vertical-title {
+      font-size: 2.1rem; // 正文 1.05rem 的 2 倍
+      letter-spacing: 0.2em;
+    }
+
+    .poem-content p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      letter-spacing: 0.2em;
     }
   }
 }
