@@ -4,6 +4,63 @@
 
 @import "styles";
 
+// 文章分類頁與導航分類下拉菜單
+.category-count {
+  color: #8a8a8a;
+  font-size: 0.85em;
+}
+
+.category-index {
+  .category-nav {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .category-link {
+    display: inline-block;
+    margin: 0 0.35rem 0.7rem;
+    padding: 0.25rem 0.85rem;
+    color: #555;
+    border: 1px solid #ddd;
+    border-radius: 999px;
+    font-size: 0.95rem;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      border-color: #0085a1;
+      background: #0085a1;
+      text-decoration: none;
+    }
+  }
+
+  .category-section {
+    scroll-margin-top: 90px;
+  }
+
+  .category-title {
+    margin: 2.5rem 0 1.5rem;
+    font-size: 2rem;
+  }
+
+  .category-post-preview .post-title {
+    font-size: 1.6rem;
+  }
+
+  .category-divider {
+    margin: 2.5rem 0;
+  }
+}
+
+#mainNav .dropdown-menu {
+  font-size: 0.9rem;
+}
+
+#mainNav .dropdown-item {
+  font-weight: 800;
+  letter-spacing: 0.0625em;
+}
+
 // 詩歌豎排版式（front matter: vertical: true 的文章啟用）
 .poem-vertical-wrap {
   position: relative;

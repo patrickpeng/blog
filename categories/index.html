@@ -1,0 +1,56 @@
+---
+layout: page
+title: Categories
+background: '/img/bg-post.png'
+description: 按分类浏览文章
+---
+
+{% assign categories = site.categories | sort %}
+
+<div class="category-index">
+  <div class="category-nav">
+    <a class="category-link" href="{{ '/' | relative_url }}">全部</a>
+    {% for category in categories %}
+    {% assign category_name = category[0] %}
+    {% assign posts = category[1] %}
+    <a class="category-link" href="#category-{{ forloop.index }}">
+      {{ category_name }} <span class="category-count">{{ posts | size }}</span>
+    </a>
+    {% endfor %}
+  </div>
+
+  {% for category in categories %}
+  {% assign category_name = category[0] %}
+  {% assign posts = category[1] %}
+  <section class="category-section" id="category-{{ forloop.index }}">
+    <h2 class="category-title">
+      {{ category_name }}
+      <span class="category-count">{{ posts | size }}</span>
+    </h2>
+
+    {% for post in posts %}
+    <article class="post-preview category-post-preview">
+      <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
+        <h3 class="post-title">{{ post.title }}</h3>
+        {% if post.subtitle %}
+        <h4 class="post-subtitle">{{ post.subtitle }}</h4>
+        {% else %}
+        <h4 class="post-subtitle">{{ post.excerpt | strip_html | truncatewords: 15 }}</h4>
+        {% endif %}
+      </a>
+      <p class="post-meta">
+        Posted by
+        {% if post.author %}
+        {{ post.author }}
+        {% else %}
+        {{ site.author }}
+        {% endif %}
+        on {{ post.date | date: '%B %d, %Y' }} &middot; {% include read_time.html content=post.content %}
+      </p>
+    </article>
+    {% unless forloop.last %}<hr>{% endunless %}
+    {% endfor %}
+  </section>
+  {% unless forloop.last %}<hr class="category-divider">{% endunless %}
+  {% endfor %}
+</div>
