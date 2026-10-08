@@ -1,0 +1,60 @@
+---
+layout: page
+---
+
+{% assign category_posts = site.categories[page.category] %}
+{% assign category_order = "記|詩|思|文|行|雜" | split: "|" %}
+{% assign categories = site.categories | sort %}
+
+<div class="category-index category-page">
+  <div class="category-nav">
+    <a class="category-link" href="{{ '/' | relative_url }}">全部</a>
+    {% for category_name in category_order %}
+    {% if site.categories[category_name] %}
+    {% assign posts = site.categories[category_name] %}
+    {% assign category_url = '/categories/' | append: category_name | append: '/' %}
+    <a class="category-link{% if category_name == page.category %} active{% endif %}" href="{{ category_url | relative_url }}">
+      {{ category_name }} <span class="category-count">{{ posts | size }}</span>
+    </a>
+    {% endif %}
+    {% endfor %}
+    {% for category in categories %}
+    {% assign category_name = category[0] %}
+    {% unless category_order contains category_name %}
+    {% assign posts = category[1] %}
+    {% assign category_url = '/categories/' | append: category_name | append: '/' %}
+    <a class="category-link{% if category_name == page.category %} active{% endif %}" href="{{ category_url | relative_url }}">
+      {{ category_name }} <span class="category-count">{{ posts | size }}</span>
+    </a>
+    {% endunless %}
+    {% endfor %}
+  </div>
+
+  <h2 class="category-title">
+    {{ page.category }}
+    <span class="category-count">{{ category_posts | size }}</span>
+  </h2>
+
+  {% for post in category_posts %}
+  <article class="post-preview category-post-preview">
+    <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
+      <h3 class="post-title">{{ post.title }}</h3>
+      {% if post.subtitle %}
+      <h4 class="post-subtitle">{{ post.subtitle }}</h4>
+      {% else %}
+      <h4 class="post-subtitle">{{ post.excerpt | strip_html | truncatewords: 15 }}</h4>
+      {% endif %}
+    </a>
+    <p class="post-meta">
+      Posted by
+      {% if post.author %}
+      {{ post.author }}
+      {% else %}
+      {{ site.author }}
+      {% endif %}
+      on {{ post.date | date: '%B %d, %Y' }} &middot; {% include read_time.html content=post.content %}
+    </p>
+  </article>
+  {% unless forloop.last %}<hr>{% endunless %}
+  {% endfor %}
+</div>

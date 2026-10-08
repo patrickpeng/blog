@@ -18,11 +18,22 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="categoriesDropdown">
             <a class="dropdown-item" href="{{ "/" | relative_url }}">All Posts</a>
             <div class="dropdown-divider"></div>
+            {% assign category_order = "記|詩|思|文|行|雜" | split: "|" %}
             {% assign nav_categories = site.categories | sort %}
+            {% for category_name in category_order %}
+            {% if site.categories[category_name] %}
+            {% assign posts = site.categories[category_name] %}
+            {% assign category_url = "/categories/" | append: category_name | append: "/" %}
+            <a class="dropdown-item" href="{{ category_url | relative_url }}">{{ category_name }} <span class="category-count">{{ posts | size }}</span></a>
+            {% endif %}
+            {% endfor %}
             {% for category in nav_categories %}
             {% assign category_name = category[0] %}
+            {% unless category_order contains category_name %}
             {% assign posts = category[1] %}
-            <a class="dropdown-item" href="{{ "/categories/" | relative_url }}#category-{{ forloop.index }}">{{ category_name }} <span class="category-count">{{ posts | size }}</span></a>
+            {% assign category_url = "/categories/" | append: category_name | append: "/" %}
+            <a class="dropdown-item" href="{{ category_url | relative_url }}">{{ category_name }} <span class="category-count">{{ posts | size }}</span></a>
+            {% endunless %}
             {% endfor %}
           </div>
         </li>
